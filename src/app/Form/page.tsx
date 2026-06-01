@@ -77,9 +77,9 @@ export default function PersonalInformation({
                             placeholder="(123) 000-0000"
                             className="h-16 rounded-2xl border border-[#E5E7EB] px-5 text-lg outline-none focus:ring-2 focus:ring-violet-500"
                             value={formData.phoneNumber}
-                            onChange={(e) => setFormData({ ...formData,phoneNumber: e.target.value.replace(/\D/g, "").slice(0, 10), })
-                        }
-                            
+                            onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value.replace(/\D/g, "").slice(0, 10), })
+                            }
+
                         />
                     </div>
                     <div className="flex flex-col gap-3">

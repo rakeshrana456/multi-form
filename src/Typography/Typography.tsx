@@ -23,7 +23,7 @@ export function TypographyP({
 }: TypographyPProps) {
   return (
     <p
-      className={`${inter.className} leading-7 text-[14px] text-muted-foreground`}
+      className={`${inter.className} leading-5 text-[12px] text-muted-foreground`}
     >
       {children}
     </p>

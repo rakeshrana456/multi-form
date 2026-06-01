@@ -29,36 +29,31 @@ export default function Brix() {
     selectedPlan: '',
     selectedService: '',
   });
-  
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+
 
 
   useEffect(() => {
-    const savedData = localStorage.getItem("formData");
-    if (savedData) {
-      setFormData(JSON.parse(savedData));
-    }
-    setIsInitialLoad(false);
-    
+    localStorage.setItem("formData", JSON.stringify(formData));
+    console.log("Saved to localStorage:", formData);
+  }, [formData]);
 
-    console.log("Loaded from localStorage:", savedData);
-  }, []);
 
-  
-  useEffect(() => {
-    if (!isInitialLoad) {
-      localStorage.setItem("formData", JSON.stringify(formData));
-      console.log("Saved to localStorage:", formData);
-    }
-  }, [formData, isInitialLoad]);
-  
 
-  
+  // useEffect(() => {
+  //   if (!isInitialLoad) {
+  //     localStorage.setItem("formData", JSON.stringify(formData));
+  //     console.log("Saved to localStorage:", formData);
+  //   }
+  // }, [formData, isInitialLoad]);
+
+
+
   return (
     <>
       <ShadowBox>
-        <div className="mainContainer grid grid-cols-2">
-          <div className="leftContainer h-auto w-87 bg-[#F1F0FB] border border-gray-200 rounded-md">
+        <div className="mainContainer min-h-full lg:grid lg:grid-cols-[330px_1fr] gap-8">
+          <div className="leftContainer h-auto bg-[#F1F0FB] border border-gray-200 rounded-md ">
             <div>
               <div className='flex gap-2 p-7 justify-center items-center'>
                 <Image height={22} width={22} alt='logo' src="/hero/logo.png" />
@@ -67,38 +62,29 @@ export default function Brix() {
             </div>
             {
               SideData.map((data: sideData, index) => (
-                <div key={index} className="flex gap-5 p-7">
+                <div key={index} className="flex gap-5 p-7 min-h-[120px]">
                   <div className="flex flex-col items-center">
-                    {
-                      <Button
-                        key={data.id}
-                        className={
-                          step === data.id
-                            ? "bg-[#4A3AFF] text-white"
-                            : ""
-                        }
-                        variant={step === data.id ? "default" : "outline"}
-                      >
-                        {data.id}
-                      </Button>
-                    }
-                    {
-                      index !== SideData.length - 1 && (
-                        <span
-                          className={`mt-10 h-14 w-1 rounded transition-all duration-2000 ${step > data.id
-                            ? "bg-[#4A3AFF]"
-                            : "bg-gray-300"
-                            }`}
-                        />
-                      )
-                    }
+                    <Button
+                      variant={step === data.id ? "default" : "outline"}
+                      className={step === data.id ? "bg-[#4A3AFF] text-white" : ""}
+                    >
+                      {data.id}
+                    </Button>
+{index !== SideData.length - 1 && (
+  <div className="mt-2 h-6 w-[4px] bg-gray-300 rounded overflow-hidden">
+    <div
+      className={`w-full bg-[#4A3AFF] transition-all duration-[900ms] ease-linear ${
+        step > data.id ? "h-full" : "h-0"
+      }`}
+    />
+  </div>
+)}
                   </div>
                   <div>
                     <TypographyH3>
                       {data.title}
                     </TypographyH3>
-
-                    <TypographyP>
+                    <TypographyP >
                       {data.description}
                     </TypographyP>
                   </div>
@@ -118,7 +104,8 @@ export default function Brix() {
             </div>
 
           </div>
-          <div className="rightContainer w-full">
+          <div className="rightContainer flex justify-center items-center">
+
             {step === 1 && <PersonalInformation onContinue={() => setStep(2)} formData={formData} setFormData={setFormData} />}
             {step === 2 && <AvailablePlans onContinue={() => setStep(3)} onBack={() => setStep(1)} formData={formData} setFormData={setFormData} />}
             {step === 3 && <OurService onContinue={() => setStep(4)} onBack={() => setStep(2)} formData={formData} setFormData={setFormData} />}
