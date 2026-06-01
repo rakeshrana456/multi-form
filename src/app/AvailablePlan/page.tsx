@@ -45,7 +45,6 @@ export default function AvailablePlans({
   setFormData = () => {},
 }: AvailablePlansProps) {
 
-  // Add safe check for formData
   const selectedPlan = formData?.selectedPlan || '';
 
   const handlePlanSelect = (planTitle: string) => {
@@ -58,7 +57,7 @@ export default function AvailablePlans({
   };
 
   return (
-    <div className="bg-white rounded-[32px] border shadow-sm p-10 lg:p-0 md:p-10">
+    <div className="bg-white rounded-[32px] border shadow-sm p-10 lg:p-5 md:p-10">
       <div className="mb-10">
         <TypographyH3>
           Available plans
