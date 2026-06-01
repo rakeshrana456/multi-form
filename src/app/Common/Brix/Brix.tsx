@@ -10,7 +10,7 @@ import PersonalInformation from '@/app/Form/page'
 import AvailablePlans from '@/app/AvailablePlan/page'
 import OurService from '@/app/OurServices/page'
 import ActiveAccount from '@/app/ActiveAccount/page'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 interface sideData {
   id: number
   title: string,
@@ -20,6 +20,29 @@ interface sideData {
 export default function Brix() {
   const [step, setStep] = useState(1);
   const handleBack = () => setStep((prev) => Math.max(prev - 1, 1));
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phoneNumber: '',
+    company: '',
+    address: '',
+    selectedPlan: '',
+    selectedService: '',
+  });
+  useEffect(() => {
+    localStorage.setItem(
+      "formData",
+      JSON.stringify(formData)
+    );
+  }, [formData]);
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("formData");
+    console.log(savedData);
+    if (savedData) {
+      setFormData(JSON.parse(savedData));
+    }
+  }, []);
   return (
     <>
       <ShadowBox>
@@ -52,8 +75,8 @@ export default function Brix() {
                       index !== SideData.length - 1 && (
                         <span
                           className={`mt-10 h-14 w-1 rounded transition-all duration-2000 ${step > data.id
-                              ? "bg-[#4A3AFF]"
-                              : "bg-gray-300"
+                            ? "bg-[#4A3AFF]"
+                            : "bg-gray-300"
                             }`}
                         />
                       )
@@ -85,10 +108,10 @@ export default function Brix() {
 
           </div>
           <div className="rightContainer w-full">
-            {step === 1 && <PersonalInformation onContinue={() => setStep(2)} />}
-            {step === 2 && <AvailablePlans onContinue={() => setStep(3)} onBack={() => setStep(1)}/>}
-            {step === 3 && <OurService onContinue={() => setStep(4)} onBack={() => setStep(2)} />}
-            {step === 4 && <ActiveAccount onContinue={() => setStep(5)} />}
+            {step === 1 && <PersonalInformation onContinue={() => setStep(2)} formData={formData} setFormData={setFormData} />}
+            {step === 2 && <AvailablePlans onContinue={() => setStep(3)} onBack={() => setStep(1)} formData={formData} setFormData={setFormData} />}
+            {step === 3 && <OurService onContinue={() => setStep(4)} onBack={() => setStep(2)} formData={formData} setFormData={setFormData} />}
+            {step === 4 && <ActiveAccount onContinue={() => setStep(5)} onBack={() => setStep(3)} formData={formData} setFormData={setFormData} />}
           </div>
 
         </div>

@@ -7,14 +7,35 @@ import { cn } from "@/lib/utils";
 
 interface OurServiceProps {
   onContinue: () => void;
-    onBack: () => void;
+  onBack: () => void;
+  formData: {
+    fullName: string;
+    email: string;
+    phoneNumber: string;
+    company: string;
+    address: string;
+    selectedPlan: string;
+    selectedService: string;
+  };
+  setFormData: React.Dispatch<
+    React.SetStateAction<{
+      fullName: string;
+      email: string;
+      phoneNumber: string;
+      company: string;
+      address: string;
+      selectedPlan: string;
+      selectedService: string;
+    }>
+  >;
 }
-
 export default function OurService({
   onContinue,
-  onBack
-}: OurServiceProps) {
-  const [selected, setSelected] = useState(3);
+  onBack,
+  formData,
+  setFormData,
+}: OurServiceProps){
+ 
 
   return (
     <div className="rounded-[32px] border bg-white p-10 shadow-sm">
@@ -37,10 +58,15 @@ export default function OurService({
           return (
             <div
               key={service.id}
-              onClick={() => setSelected(service.id)}
+            onClick={() =>
+  setFormData({
+    ...formData,
+    selectedService: service.title,
+  })
+}
               className={cn(
                 "cursor-pointer rounded-2xl border p-8 transition-all",
-                selected === service.id
+                service.title === formData.selectedService
                   ? "border-[#4A3AFF]"
                   : "border-gray-200"
               )}
@@ -64,7 +90,7 @@ export default function OurService({
         })}
       </div>
 
-      {/* Footer */}
+
       <div className="mt-12 flex justify-between">
         <Button
           variant="outline"
@@ -74,9 +100,20 @@ export default function OurService({
           Back
         </Button>
 
-        <Button onClick={onContinue} className="h-14 w-36 rounded-xl bg-[#4A3AFF] hover:bg-[#3D2FFF]">
-          Continue
-        </Button>
+       <Button
+  onClick={onContinue}
+ disabled={!formData.selectedService}
+  className="
+    h-14 w-36 rounded-xl
+    bg-[#4A3AFF]
+    hover:bg-[#3D2FFF]
+    disabled:bg-gray-400
+    disabled:hover:bg-gray-400
+    disabled:cursor-not-allowed
+  "
+>
+  Continue
+</Button>
       </div>
     </div>
   );

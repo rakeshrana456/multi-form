@@ -2,15 +2,39 @@ import { Button } from "@/components/ui/button";
 import { services } from "@/Data/data.js";
 import { successData } from "@/Data/data.js";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 interface ActiveAccountProps {
-  onContinue: () => void;
+    onContinue: () => void;
+    onBack: () => void;
+    formData: {
+        fullName: string;
+        email: string;
+        phoneNumber: string;
+        company: string;
+        address: string;
+        selectedPlan: string;
+        selectedService: string;
+
+    };
+    setFormData: React.Dispatch<
+        React.SetStateAction<{
+            fullName: string;
+            email: string;
+            phoneNumber: string;
+            company: string;
+            address: string;
+            selectedPlan: string;
+            selectedService: string;
+        }>
+    >;
 }
 
 export default function ActiveAccount({
-  onContinue,
-}: ActiveAccountProps)  
-
- {
+    onBack,
+    formData,
+    setFormData
+}: ActiveAccountProps) {
+ 
     return (
         <div className="rounded-[32px] border bg-white p-10 shadow-sm">
             <div className="mb-10">
@@ -27,9 +51,15 @@ export default function ActiveAccount({
                     return (
                         <div
                             key={service.id}
+                            onClick={() =>
+                                setFormData({
+                                    ...formData,
+                                    selectedService: service.title,
+                                })
+                            }
                             className={cn(
-                                "rounded-2xl border p-8",
-                                service.id === successData.selectedServiceId
+                                "rounded-2xl border p-8 cursor-pointer transition-all",
+                                service.title === formData.selectedService
                                     ? "border-[#4A3AFF]"
                                     : "border-gray-200"
                             )}
@@ -41,23 +71,31 @@ export default function ActiveAccount({
                                         className="text-[#4A3AFF]"
                                     />
                                 </div>
-                                <h3
-                                    className={cn(
-                                        "text-lg",
-                                        service.id === successData.selectedServiceId
-                                            ? "font-semibold text-[#1E1B4B]"
-                                            : "text-[#6B7280]"
-                                    )}
-                                >
-                                    {service.title}
-                                </h3>
+                                {service.title}
                             </div>
                         </div>
                     );
                 })}
             </div>
-            <div className="mt-12 flex justify-end">
-                <Button onClick={onContinue} className="h-14 w-36 rounded-xl bg-[#4A3AFF] hover:bg-[#3D2FFF]">
+            <div className="mt-12 flex justify-between items-center">
+                <Button
+                    variant="outline"
+                    className="h-14 min-w-35 rounded-xl"
+                    onClick={onBack}
+                >
+                    Back
+                </Button>
+                <Button
+
+                    disabled={!formData.selectedService}
+                    className="
+    h-14 w-36 rounded-xl
+    bg-[#4A3AFF]
+    hover:bg-[#3D2FFF]
+    disabled:bg-gray-500
+    disabled:cursor-not-allowed
+  "
+                >
                     {successData.buttonText}
                 </Button>
             </div>

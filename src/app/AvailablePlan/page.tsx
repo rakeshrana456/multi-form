@@ -5,16 +5,41 @@ import { CalendarDays, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TypographyH3, TypographyP } from '@/Typography/Typography'
 import Link from "next/link";
+import { useState } from "react";
+
 interface AvailablePlansProps {
   onContinue: () => void;
   onBack: () => void;
+  formData: {
+    fullName: string;
+    email: string;
+    phoneNumber: string;
+    company: string;
+    address: string;
+    selectedPlan: string;
+    selectedService: string;
+  };
+  setFormData: React.Dispatch<
+    React.SetStateAction<{
+      fullName: string;
+      email: string;
+      phoneNumber: string;
+      company: string;
+      address: string;
+      selectedPlan: string;
+      selectedService: string;
+    }>
+  >;
 }
 
 export default function AvailablePlans({
   onContinue,
   onBack,
+  formData,
+  setFormData,
 
 }: AvailablePlansProps) {
+  
   return (
     <div className="bg-white rounded-[32px] border shadow-sm p-10">
   
@@ -32,24 +57,30 @@ export default function AvailablePlans({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {plans.map((plan) => (
           <div
-            key={plan.id}
-            className={cn(
-              "relative rounded-2xl border p-5 transition-all",
-              plan.selected
-                ? "border-[#4A3AFF] shadow-sm"
-                : "border-gray-200"
-            )}
-          >
+  key={plan.id}
+ onClick={() =>
+  setFormData({
+    ...formData,
+    selectedPlan: plan.title,
+  })
+}
+  className={cn(
+    "relative rounded-2xl border p-5 transition-all cursor-pointer",
+    formData.selectedPlan === plan.title
+      ? "border-[#4A3AFF] shadow-sm"
+      : "border-gray-200"
+  )}
+>
          
             <div
               className={cn(
                 "absolute top-5 right-5 h-5 w-5 rounded-full border",
-                plan.selected
+               formData.selectedPlan === plan.title
                   ? "border-[#4A3AFF]"
                   : "border-gray-300"
               )}
             >
-              {plan.selected && (
+              {formData.selectedPlan === plan.title && (
                 <div className="h-3 w-3 rounded-full bg-[#4A3AFF] m-[3px]" />
               )}
             </div>
@@ -88,9 +119,21 @@ export default function AvailablePlans({
           Back
         </Button>
 
-        <Button onClick={onContinue} className="h-14 min-w-[140px] rounded-xl bg-[#4A3AFF] hover:bg-[#3d2de0]">
-          Continue
-        </Button>
+        <Button
+        type="button"
+  onClick={onContinue}
+  disabled={!formData.selectedPlan}
+  className="
+    h-14 min-w-[140px] rounded-xl
+    bg-[#4A3AFF]
+    hover:bg-[#3d2de0]
+    disabled:bg-gray-400
+    disabled:hover:bg-gray-400
+    disabled:cursor-not-allowed
+  "
+>
+  Continue
+</Button>
       </div>
     </div>
   );
