@@ -29,24 +29,31 @@ export default function Brix() {
     selectedPlan: '',
     selectedService: '',
   });
-  useEffect(() => {
-    localStorage.setItem(
-      "formData",
-      JSON.stringify(formData)
-    );
-  }, [formData]);
+  
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
 
   useEffect(() => {
     const savedData = localStorage.getItem("formData");
-  
     if (savedData) {
       setFormData(JSON.parse(savedData));
     }
-      console.log(savedData);
+    setIsInitialLoad(false);
+    
+
+    console.log("Loaded from localStorage:", savedData);
   }, []);
+
+  
   useEffect(() => {
-  console.log("FORM DATA CHANGED:", formData);
-}, [formData]);
+    if (!isInitialLoad) {
+      localStorage.setItem("formData", JSON.stringify(formData));
+      console.log("Saved to localStorage:", formData);
+    }
+  }, [formData, isInitialLoad]);
+  
+
+  
   return (
     <>
       <ShadowBox>

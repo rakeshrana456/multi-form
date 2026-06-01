@@ -80,7 +80,7 @@ export default function ActiveAccount({
             <div className="mt-12 flex justify-between items-center">
                 <Button
                     variant="outline"
-                    className="h-14 min-w-35 rounded-xl"
+                    className="h-14 min-w-35 rounded-xl cursor-pointer"
                     onClick={onBack}
                 >
                     Back
@@ -93,7 +93,7 @@ export default function ActiveAccount({
     bg-[#4A3AFF]
     hover:bg-[#3D2FFF]
     disabled:bg-gray-500
-    disabled:cursor-not-allowed
+    disabled:cursor-not-allowed cursor-pointer
   "
                 >
                     {successData.buttonText}

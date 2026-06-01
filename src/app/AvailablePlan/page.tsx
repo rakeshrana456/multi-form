@@ -74,14 +74,14 @@ export default function AvailablePlans({
 
             <div
               className={cn(
-                "absolute top-5 right-5 h-5 w-5 rounded-full border",
+                "absolute top-5 right-5 h-5 w-5 rounded-full border flex items-center justify-center",
                 formData.selectedPlan === plan.title
                   ? "border-[#4A3AFF]"
                   : "border-gray-300"
               )}
             >
               {formData.selectedPlan === plan.title && (
-                <div className="h-3 w-3 rounded-full bg-[#4A3AFF] m-0.75z`" />
+                <div className="h-3 w-3 rounded-full bg-[#4A3AFF] m-[3px]`" />
               )}
             </div>
 
@@ -113,7 +113,7 @@ export default function AvailablePlans({
       <div className="flex justify-between mt-12">
         <Button
           variant="outline"
-          className="h-14 min-w-35 rounded-xl"
+          className="h-14 min-w-35 rounded-xl cursor-pointer"
           onClick={onBack}
         >
           Back
@@ -125,6 +125,7 @@ export default function AvailablePlans({
           disabled={!formData.selectedPlan}
           className="
     h-14 min-w-35 rounded-xl
+    cursor-pointer
     bg-[#4A3AFF]
     hover:bg-[#3d2de0]
     disabled:bg-gray-400
