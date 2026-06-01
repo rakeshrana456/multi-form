@@ -4,13 +4,11 @@ import { Button } from "@/components/ui/button";
 import { CalendarDays, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TypographyH3, TypographyP } from '@/Typography/Typography'
-// import Link from "next/link";
-// import { useState } from "react";
 
 interface AvailablePlansProps {
   onContinue?: () => void;
   onBack: () => void;
-  formData: {
+  formData?: {
     fullName: string;
     email: string;
     phoneNumber: string;
@@ -19,7 +17,7 @@ interface AvailablePlansProps {
     selectedPlan: string;
     selectedService: string;
   };
-  setFormData: React.Dispatch<
+  setFormData?: React.Dispatch<
     React.SetStateAction<{
       fullName: string;
       email: string;
@@ -35,53 +33,63 @@ interface AvailablePlansProps {
 export default function AvailablePlans({
   onContinue,
   onBack,
-  formData,
-  setFormData,
-
+  formData = {
+    fullName: '',
+    email: '',
+    phoneNumber: '',
+    company: '',
+    address: '',
+    selectedPlan: '',
+    selectedService: '',
+  },
+  setFormData = () => {},
 }: AvailablePlansProps) {
+
+  // Add safe check for formData
+  const selectedPlan = formData?.selectedPlan || '';
+
+  const handlePlanSelect = (planTitle: string) => {
+    if (setFormData) {
+      setFormData({
+        ...formData,
+        selectedPlan: planTitle,
+      });
+    }
+  };
 
   return (
     <div className="bg-white rounded-[32px] border shadow-sm p-10 lg:p-0 md:p-10">
-
       <div className="mb-10">
-        < TypographyH3 >
+        <TypographyH3>
           Available plans
-        </ TypographyH3>
-
+        </TypographyH3>
         <TypographyP>
           Select the plan that best fits your needs and budget.
         </TypographyP>
       </div>
 
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 p-6  gap-6">
         {plans.map((plan) => (
           <div
             key={plan.id}
-            onClick={() =>
-              setFormData({
-                ...formData,
-                selectedPlan: plan.title,
-              })
-            }
+            onClick={() => handlePlanSelect(plan.title)}
             className={cn(
               "relative rounded-2xl border p-5 transition-all cursor-pointer",
-              formData?.selectedPlan === plan.title
+              selectedPlan === plan.title
                 ? "border-[#4A3AFF] shadow-sm"
                 : "border-gray-200"
             )}
           >
-
             <div
               className={cn(
                 "absolute top-5 right-5 h-5 w-5 rounded-full border flex items-center justify-center",
-                formData.selectedPlan === plan.title
+                selectedPlan === plan.title
                   ? "border-[#4A3AFF]"
                   : "border-gray-300"
               )}
             >
-              {formData.selectedPlan === plan.title && (
-                <div className="h-3 w-3 rounded-full bg-[#4A3AFF] m-[3px]`" />
+              {selectedPlan === plan.title && (
+                <div className="h-3 w-3 rounded-full bg-[#4A3AFF]" />
               )}
             </div>
 
@@ -92,7 +100,6 @@ export default function AvailablePlans({
             <TypographyP>
               {plan.description}
             </TypographyP>
-
 
             <div className="flex gap-3 mt-5 flex-wrap">
               <span className="flex items-center gap-1 rounded-md bg-gray-100 px-2 py-1 text-sm">
@@ -113,7 +120,6 @@ export default function AvailablePlans({
         ))}
       </div>
 
-
       <div className="flex justify-between mt-12 gap-3">
         <Button
           variant="outline"
@@ -126,16 +132,16 @@ export default function AvailablePlans({
         <Button
           type="button"
           onClick={onContinue}
-          disabled={!formData.selectedPlan}
+          disabled={!selectedPlan}
           className="
-    h-14 min-w-35 rounded-xl
-    cursor-pointer
-    bg-[#4A3AFF]
-    hover:bg-[#3d2de0]
-    disabled:bg-gray-400
-    disabled:hover:bg-gray-400
-    disabled:cursor-not-allowed
-  "
+            h-14 min-w-35 rounded-xl
+            cursor-pointer
+            bg-[#4A3AFF]
+            hover:bg-[#3d2de0]
+            disabled:bg-gray-400
+            disabled:hover:bg-gray-400
+            disabled:cursor-not-allowed
+          "
         >
           Continue
         </Button>
