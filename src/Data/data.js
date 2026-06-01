@@ -45,6 +45,45 @@ export const services = [
     selected: false,
   },
 ];
+
+export const servicesSelected = [
+  {
+    id: 1,
+    title: "Development",
+    icon: Code2,
+    selected: false,
+  },
+  {
+    id: 2,
+    title: "Web Design",
+    icon: PencilRuler,
+    selected: false,
+  },
+  {
+    id: 3,
+    title: "Marketing",
+    icon: Megaphone,
+    selected: true,
+  },
+  {
+    id: 4,
+    title: "Brand Strategy",
+    icon: Palette,
+    selected: false,
+  },
+  {
+    id: 5,
+    title: "Optimization",
+    icon: Settings,
+    selected: false,
+  },
+  {
+    id: 6,
+    title: "Other",
+    icon: Box,
+    selected: false,
+  },
+];
 export const successData = {
   title: "Thank You for Your Submission!",
   description: "Your information has been successfully received.",

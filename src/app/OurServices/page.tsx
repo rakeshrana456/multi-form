@@ -51,7 +51,7 @@ export default function OurService({
       </div>
 
       {/* Services Grid */}
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map((service) => {
           const Icon = service.icon;
 
@@ -91,7 +91,7 @@ export default function OurService({
       </div>
 
 
-      <div className="mt-12 flex justify-between">
+      <div className="mt-12 flex justify-between gap-3">
         <Button
           variant="outline"
           className="h-14 w-36 rounded-xl"
@@ -103,14 +103,7 @@ export default function OurService({
         <Button
           onClick={onContinue}
           disabled={!formData.selectedService}
-          className="
-    h-14 w-36 rounded-xl
-    bg-[#4A3AFF]
-    hover:bg-[#3D2FFF]
-    disabled:bg-gray-400
-    disabled:hover:bg-gray-400
-    disabled:cursor-not-allowed
-  "
+          className="h-14 w-36 rounded-xl bg-[#4A3AFF] hover:bg-[#3D2FFF] disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:cursor-not-allowed"
         >
           Continue
         </Button>

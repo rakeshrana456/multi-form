@@ -20,6 +20,7 @@ interface sideData {
 export default function Brix() {
   const [step, setStep] = useState(1);
   const handleBack = () => setStep((prev) => Math.max(prev - 1, 1));
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -52,7 +53,7 @@ export default function Brix() {
   return (
     <>
       <ShadowBox>
-        <div className="mainContainer min-h-full lg:grid lg:grid-cols-[330px_1fr] gap-8">
+        <div className="mainContainer min-h-full lg:grid lg:grid-cols-[330px_1fr] gap-8 flex flex-col lg:flex-row">
           <div className="leftContainer h-auto bg-[#F1F0FB] border border-gray-200 rounded-md ">
             <div>
               <div className='flex gap-2 p-7 justify-center items-center'>
@@ -70,15 +71,14 @@ export default function Brix() {
                     >
                       {data.id}
                     </Button>
-{index !== SideData.length - 1 && (
-  <div className="mt-2 h-6 w-[4px] bg-gray-300 rounded overflow-hidden">
-    <div
-      className={`w-full bg-[#4A3AFF] transition-all duration-[900ms] ease-linear ${
-        step > data.id ? "h-full" : "h-0"
-      }`}
-    />
-  </div>
-)}
+                    {index !== SideData.length - 1 && (
+                      <div className="mt-2 h-6 w-[4px] bg-gray-300 rounded overflow-hidden">
+                        <div
+                          className={`w-full bg-[#4A3AFF] transition-all duration-[900ms] ease-linear ${step > data.id ? "h-full" : "h-0"
+                            }`}
+                        />
+                      </div>
+                    )}
                   </div>
                   <div>
                     <TypographyH3>
@@ -104,7 +104,7 @@ export default function Brix() {
             </div>
 
           </div>
-          <div className="rightContainer flex justify-center items-center">
+          <div className="rightContainer flex justify-center items-center ">
 
             {step === 1 && <PersonalInformation onContinue={() => setStep(2)} formData={formData} setFormData={setFormData} />}
             {step === 2 && <AvailablePlans onContinue={() => setStep(3)} onBack={() => setStep(1)} formData={formData} setFormData={setFormData} />}

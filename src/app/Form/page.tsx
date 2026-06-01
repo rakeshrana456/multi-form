@@ -36,32 +36,32 @@ export default function PersonalInformation({
 }: PersonalInformationProps) {
 
     return (
-        <div className="w-full rounded-[30px] border bg-white p-12 shadow-sm">
+        <div className="w-full rounded-[30px] border bg-white p-5 md:p-12 shadow-sm">
             <TypographyH3>
                 Personal information
             </TypographyH3>
             <form className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col gap-3">
-                        <label className="text-[20px] font-medium text-[#1E1B4B]">
+                        <label className="text-base md:text-[20px] font-medium text-[#1E1B4B]">
                             Full name<span className="text-red-500">*</span>
                         </label>
                         <input
                             type="text"
                             placeholder="Exp. John Carter"
-                            className="h-16 rounded-2xl border border-[#E5E7EB] px-5 text-lg outline-none focus:ring-2 focus:ring-violet-500"
+                           className="h-14 md:h-16 rounded-2xl border border-[#E5E7EB] px-4 md:px-5 text-base md:text-lg outline-none focus:ring-2 focus:ring-violet-500"
                             value={formData.fullName}
                             onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         />
                     </div>
                     <div className="flex flex-col gap-3">
-                        <label className="text-[20px] font-medium text-[#1E1B4B]">
+                      <label className="text-base md:text-[20px] font-medium text-[#1E1B4B]">
                             Email<span className="text-red-500">*</span>
                         </label>
                         <input
                             type="email"
                             placeholder="Enter your email"
-                            className="h-16 rounded-2xl border border-[#E5E7EB] px-5 text-lg outline-none focus:ring-2 focus:ring-violet-500"
+                           className="h-14 md:h-16 rounded-2xl border border-[#E5E7EB] px-4 md:px-5 text-base md:text-lg outline-none focus:ring-2 focus:ring-violet-500"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         />
@@ -69,13 +69,13 @@ export default function PersonalInformation({
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col gap-3">
-                        <label className="text-[20px] font-medium text-[#1E1B4B]">
+                       <label className="text-base md:text-[20px] font-medium text-[#1E1B4B]">
                             Phone number<span className="text-red-500">*</span>
                         </label>
                         <input
                             type="number"
                             placeholder="(123) 000-0000"
-                            className="h-16 rounded-2xl border border-[#E5E7EB] px-5 text-lg outline-none focus:ring-2 focus:ring-violet-500"
+                         className="h-14 md:h-16 rounded-2xl border border-[#E5E7EB] px-4 md:px-5 text-base md:text-lg outline-none focus:ring-2 focus:ring-violet-500"
                             value={formData.phoneNumber}
                             onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value.replace(/\D/g, "").slice(0, 10), })
                             }
@@ -83,13 +83,13 @@ export default function PersonalInformation({
                         />
                     </div>
                     <div className="flex flex-col gap-3">
-                        <label className="text-[20px] font-medium text-[#1E1B4B]">
+                        <label className="text-base md:text-[20px] font-medium text-[#1E1B4B]">
                             Company
                         </label>
                         <input
                             type="text"
                             placeholder="Exp. Company"
-                            className="h-16 rounded-2xl border border-[#E5E7EB] px-5 text-lg outline-none focus:ring-2 focus:ring-violet-500"
+                           className="h-14 md:h-16 rounded-2xl border border-[#E5E7EB] px-4 md:px-5 text-base md:text-lg outline-none focus:ring-2 focus:ring-violet-500"
                             value={formData.company}
                             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         />
@@ -98,14 +98,14 @@ export default function PersonalInformation({
 
 
                 <div className="flex flex-col gap-3">
-                    <label className="text-[20px] font-medium text-[#1E1B4B]">
+                    <label className="text-base md:text-[20px] font-medium text-[#1E1B4B]">
                         Address<span className="text-red-500">*</span>
                     </label>
 
                     <input
                         type="text"
                         placeholder="Exp. San Francisco, CA"
-                        className="h-16 rounded-2xl border border-[#E5E7EB] px-5 text-lg outline-none focus:ring-2 focus:ring-violet-500"
+                       className="h-14 md:h-16 rounded-2xl border border-[#E5E7EB] px-4 md:px-5 text-base md:text-lg outline-none focus:ring-2 focus:ring-violet-500"
                         value={formData.address}
                         onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                     />

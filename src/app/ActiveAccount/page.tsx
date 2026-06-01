@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { services } from "@/Data/data.js";
+import { servicesSelected } from "@/Data/data.js";
 import { successData } from "@/Data/data.js";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { X } from "lucide-react"; 
-import { TypographyH3 } from "@/Typography/Typography";
+import { TypographyH3 , TypographyP} from "@/Typography/Typography";
 interface ActiveAccountProps {
     onContinue: () => void;
     onBack: () => void;
@@ -53,16 +53,17 @@ export default function ActiveAccount({
     return (
         <>
             <div className="rounded-[32px] border bg-white p-10 shadow-sm">
-                <div className="mb-10">
-                    <h1 className="text-[48px] font-bold text-[#1E1B4B]">
-                        {successData.title}
-                    </h1>
-                    <p className="mt-2 text-lg text-[#6B7280]">
-                        {successData.description}
-                    </p>
-                </div>
-                <div className="grid grid-cols-3 gap-8">
-                    {services.map((service) => {
+               { showPopup && (
+                    <div className="mb-10">
+                        <TypographyH3  >
+                            {successData.title}
+                        </TypographyH3>
+                        <TypographyP >
+                            {successData.description}
+                        </TypographyP>
+                    </div>)}
+                <div className=" grid grid-cols-1 gap-8 lg:grid-cols-3 md:grid-cols-2">
+                    {servicesSelected.map((service) => {
                         const Icon = service.icon;
                         return (
                             <div
@@ -87,13 +88,15 @@ export default function ActiveAccount({
                                             className="text-[#4A3AFF]"
                                         />
                                     </div>
+                                    <TypographyH3 >
                                     {service.title}
+                                    </TypographyH3>
                                 </div>
                             </div>
                         );
                     })}
                 </div>
-                <div className="mt-12 flex justify-between items-center">
+                <div className="mt-12 flex justify-between items-center gap-3">
                     <Button
                         variant="outline"
                         className="h-14 min-w-35 rounded-xl"
@@ -118,7 +121,7 @@ export default function ActiveAccount({
             </div>
 
             
-            {showPopup && (
+            {/* {showPopup && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
                     <div className="relative mx-4 w-full max-w-md animate-in fade-in zoom-in duration-300">
                         <div className="rounded-2xl border bg-white p-8 shadow-2xl">
@@ -174,7 +177,7 @@ export default function ActiveAccount({
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
         </>
     );
 }

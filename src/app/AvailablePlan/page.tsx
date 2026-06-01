@@ -41,7 +41,7 @@ export default function AvailablePlans({
 }: AvailablePlansProps) {
 
   return (
-    <div className="bg-white rounded-[32px] border shadow-sm p-10">
+    <div className="bg-white rounded-[32px] border shadow-sm p-10 lg:p-0 md:p-10">
 
       <div className="mb-10">
         < TypographyH3 >
@@ -97,12 +97,16 @@ export default function AvailablePlans({
             <div className="flex gap-3 mt-5 flex-wrap">
               <span className="flex items-center gap-1 rounded-md bg-gray-100 px-2 py-1 text-sm">
                 <Users size={14} />
-                {plan.users}
+                <TypographyP>
+                  {plan.users}
+                </TypographyP>
               </span>
 
               <span className="flex items-center gap-1 rounded-md bg-gray-100 px-2 py-1 text-sm">
                 <CalendarDays size={14} />
-                {plan.billing}
+                <TypographyP>
+                  {plan.billing}
+                </TypographyP>
               </span>
             </div>
           </div>
@@ -110,7 +114,7 @@ export default function AvailablePlans({
       </div>
 
 
-      <div className="flex justify-between mt-12">
+      <div className="flex justify-between mt-12 gap-3">
         <Button
           variant="outline"
           className="h-14 min-w-35 rounded-xl cursor-pointer"
