@@ -1,13 +1,14 @@
 'use client'
 
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 interface PersonalInformationProps {
-  onContinue: () => void;
+    onContinue: () => void;
 }
 
 export default function PersonalInformation({
-  onContinue,
-}: PersonalInformationProps)  {
+    onContinue,
+}: PersonalInformationProps) {
     return (
         <div className="w-full rounded-[30px] border bg-white p-12 shadow-sm">
 
@@ -93,9 +94,11 @@ export default function PersonalInformation({
 
 
                 <div className="flex justify-end pt-10">
+                    
                     <Button onClick={onContinue} className="h-16 px-10 rounded-2xl text-lg bg-violet-600 hover:bg-violet-700 shadow-lg">
                         Continue
                     </Button>
+               
                 </div>
             </form>
         </div>

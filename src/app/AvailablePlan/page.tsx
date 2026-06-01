@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CalendarDays, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TypographyH3, TypographyP } from '@/Typography/Typography'
+import Link from "next/link";
 interface AvailablePlansProps {
   onContinue: () => void;
 }
