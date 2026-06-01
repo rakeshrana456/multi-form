@@ -1,5 +1,5 @@
 "use client";
-import {plans } from "@/Data/data.js";
+import { plans } from "@/Data/data.js";
 import { Button } from "@/components/ui/button";
 import { CalendarDays, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -39,10 +39,10 @@ export default function AvailablePlans({
   setFormData,
 
 }: AvailablePlansProps) {
-  
+
   return (
     <div className="bg-white rounded-[32px] border shadow-sm p-10">
-  
+
       <div className="mb-10">
         < TypographyH3 >
           Available plans
@@ -53,35 +53,35 @@ export default function AvailablePlans({
         </TypographyP>
       </div>
 
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {plans.map((plan) => (
           <div
-  key={plan.id}
- onClick={() =>
-  setFormData({
-    ...formData,
-    selectedPlan: plan.title,
-  })
-}
-  className={cn(
-    "relative rounded-2xl border p-5 transition-all cursor-pointer",
-    formData.selectedPlan === plan.title
-      ? "border-[#4A3AFF] shadow-sm"
-      : "border-gray-200"
-  )}
->
-         
+            key={plan.id}
+            onClick={() =>
+              setFormData({
+                ...formData,
+                selectedPlan: plan.title,
+              })
+            }
+            className={cn(
+              "relative rounded-2xl border p-5 transition-all cursor-pointer",
+              formData.selectedPlan === plan.title
+                ? "border-[#4A3AFF] shadow-sm"
+                : "border-gray-200"
+            )}
+          >
+
             <div
               className={cn(
                 "absolute top-5 right-5 h-5 w-5 rounded-full border",
-               formData.selectedPlan === plan.title
+                formData.selectedPlan === plan.title
                   ? "border-[#4A3AFF]"
                   : "border-gray-300"
               )}
             >
               {formData.selectedPlan === plan.title && (
-                <div className="h-3 w-3 rounded-full bg-[#4A3AFF] m-[3px]" />
+                <div className="h-3 w-3 rounded-full bg-[#4A3AFF] m-0.75z`" />
               )}
             </div>
 
@@ -93,7 +93,7 @@ export default function AvailablePlans({
               {plan.description}
             </TypographyP>
 
-            
+
             <div className="flex gap-3 mt-5 flex-wrap">
               <span className="flex items-center gap-1 rounded-md bg-gray-100 px-2 py-1 text-sm">
                 <Users size={14} />
@@ -109,31 +109,31 @@ export default function AvailablePlans({
         ))}
       </div>
 
-     
+
       <div className="flex justify-between mt-12">
         <Button
           variant="outline"
-          className="h-14 min-w-[140px] rounded-xl"
+          className="h-14 min-w-35 rounded-xl"
           onClick={onBack}
         >
           Back
         </Button>
 
         <Button
-        type="button"
-  onClick={onContinue}
-  disabled={!formData.selectedPlan}
-  className="
-    h-14 min-w-[140px] rounded-xl
+          type="button"
+          onClick={onContinue}
+          disabled={!formData.selectedPlan}
+          className="
+    h-14 min-w-35 rounded-xl
     bg-[#4A3AFF]
     hover:bg-[#3d2de0]
     disabled:bg-gray-400
     disabled:hover:bg-gray-400
     disabled:cursor-not-allowed
   "
->
-  Continue
-</Button>
+        >
+          Continue
+        </Button>
       </div>
     </div>
   );

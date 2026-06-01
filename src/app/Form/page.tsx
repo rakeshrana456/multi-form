@@ -73,11 +73,13 @@ export default function PersonalInformation({
                             Phone number<span className="text-red-500">*</span>
                         </label>
                         <input
-                            type="text"
+                            type="number"
                             placeholder="(123) 000-0000"
                             className="h-16 rounded-2xl border border-[#E5E7EB] px-5 text-lg outline-none focus:ring-2 focus:ring-violet-500"
                             value={formData.phoneNumber}
-                            onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+                            onChange={(e) => setFormData({ ...formData,phoneNumber: e.target.value.replace(/\D/g, "").slice(0, 10), })
+                        }
+                            
                         />
                     </div>
                     <div className="flex flex-col gap-3">
@@ -113,13 +115,14 @@ export default function PersonalInformation({
                 <div className="flex justify-end pt-10">
                     <Button
                         onClick={onContinue}
+                        type="button"
                         disabled={
                             !formData.fullName ||
                             !formData.email ||
                             !formData.phoneNumber ||
                             !formData.address
                         }
- className="
+                        className="
     h-14 w-36 rounded-xl
     bg-[#4A3AFF] hover:bg-[#3D2FFF]
     disabled:bg-gray-500

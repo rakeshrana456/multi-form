@@ -38,11 +38,15 @@ export default function Brix() {
 
   useEffect(() => {
     const savedData = localStorage.getItem("formData");
-    console.log(savedData);
+  
     if (savedData) {
       setFormData(JSON.parse(savedData));
     }
+      console.log(savedData);
   }, []);
+  useEffect(() => {
+  console.log("FORM DATA CHANGED:", formData);
+}, [formData]);
   return (
     <>
       <ShadowBox>
