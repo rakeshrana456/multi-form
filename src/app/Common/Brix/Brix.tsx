@@ -19,6 +19,7 @@ interface sideData {
 }
 export default function Brix() {
   const [step, setStep] = useState(1);
+  const handleBack = () => setStep((prev) => Math.max(prev - 1, 1));
   return (
     <>
       <ShadowBox>
@@ -85,8 +86,8 @@ export default function Brix() {
           </div>
           <div className="rightContainer w-full">
             {step === 1 && <PersonalInformation onContinue={() => setStep(2)} />}
-            {step === 2 && <AvailablePlans onContinue={() => setStep(3)} />}
-            {step === 3 && <OurService onContinue={() => setStep(4)} />}
+            {step === 2 && <AvailablePlans onContinue={() => setStep(3)} onBack={() => setStep(1)}/>}
+            {step === 3 && <OurService onContinue={() => setStep(4)} onBack={() => setStep(2)} />}
             {step === 4 && <ActiveAccount onContinue={() => setStep(5)} />}
           </div>
 

@@ -7,10 +7,13 @@ import { TypographyH3, TypographyP } from '@/Typography/Typography'
 import Link from "next/link";
 interface AvailablePlansProps {
   onContinue: () => void;
+  onBack: () => void;
 }
 
 export default function AvailablePlans({
   onContinue,
+  onBack,
+
 }: AvailablePlansProps) {
   return (
     <div className="bg-white rounded-[32px] border shadow-sm p-10">
@@ -80,6 +83,7 @@ export default function AvailablePlans({
         <Button
           variant="outline"
           className="h-14 min-w-[140px] rounded-xl"
+          onClick={onBack}
         >
           Back
         </Button>

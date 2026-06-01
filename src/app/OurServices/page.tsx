@@ -7,10 +7,12 @@ import { cn } from "@/lib/utils";
 
 interface OurServiceProps {
   onContinue: () => void;
+    onBack: () => void;
 }
 
 export default function OurService({
   onContinue,
+  onBack
 }: OurServiceProps) {
   const [selected, setSelected] = useState(3);
 
@@ -67,6 +69,7 @@ export default function OurService({
         <Button
           variant="outline"
           className="h-14 w-36 rounded-xl"
+          onClick={onBack}
         >
           Back
         </Button>
