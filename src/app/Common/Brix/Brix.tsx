@@ -49,7 +49,12 @@ export default function Brix() {
                     }
                     {
                       index !== SideData.length - 1 && (
-                        <span className="mt-10 h-14 w-1 bg-[#4A3AFF]" />
+                        <span
+                          className={`mt-10 h-14 w-1 rounded transition-all duration-2000 ${step > data.id
+                              ? "bg-[#4A3AFF]"
+                              : "bg-gray-300"
+                            }`}
+                        />
                       )
                     }
                   </div>
@@ -82,7 +87,7 @@ export default function Brix() {
             {step === 1 && <PersonalInformation onContinue={() => setStep(2)} />}
             {step === 2 && <AvailablePlans onContinue={() => setStep(3)} />}
             {step === 3 && <OurService onContinue={() => setStep(4)} />}
-            {step === 4 && <ActiveAccount  onContinue={() => setStep(4)}/>}
+            {step === 4 && <ActiveAccount onContinue={() => setStep(5)} />}
           </div>
 
         </div>
