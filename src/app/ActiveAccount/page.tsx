@@ -1,4 +1,6 @@
+"use client";
 import { Button } from "@/components/ui/button";
+
 import { servicesSelected } from "@/Data/data.js";
 import { successData } from "@/Data/data.js";
 import { cn } from "@/lib/utils";
@@ -76,7 +78,7 @@ export default function ActiveAccount({
                                 }
                                 className={cn(
                                     "rounded-2xl border p-8 cursor-pointer transition-all",
-                                    service.title === formData.selectedService
+                                  service.title === formData?.selectedService
                                         ? "border-[#4A3AFF]"
                                         : "border-gray-200"
                                 )}
@@ -105,7 +107,7 @@ export default function ActiveAccount({
                         Back
                     </Button>
                     <Button
-                        disabled={!formData.selectedService}
+                        disabled={!formData?.selectedService}
                         onClick={handleFinish}
                         className="
                             h-14 w-36 rounded-xl

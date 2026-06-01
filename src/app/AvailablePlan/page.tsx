@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { CalendarDays, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TypographyH3, TypographyP } from '@/Typography/Typography'
-import Link from "next/link";
-import { useState } from "react";
+// import Link from "next/link";
+// import { useState } from "react";
 
 interface AvailablePlansProps {
-  onContinue: () => void;
+  onContinue?: () => void;
   onBack: () => void;
   formData: {
     fullName: string;
@@ -66,7 +66,7 @@ export default function AvailablePlans({
             }
             className={cn(
               "relative rounded-2xl border p-5 transition-all cursor-pointer",
-              formData.selectedPlan === plan.title
+              formData?.selectedPlan === plan.title
                 ? "border-[#4A3AFF] shadow-sm"
                 : "border-gray-200"
             )}
