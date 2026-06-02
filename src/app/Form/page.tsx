@@ -39,6 +39,11 @@ export default function PersonalInformation({
         }
     };
     const validateEmail = (email: string) => {
+        if (!email.trim()) {
+            setEmailError("");
+            return;
+        }
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailRegex.test(email)) {
@@ -48,6 +53,7 @@ export default function PersonalInformation({
         }
     };
     const [emailError, setEmailError] = useState("");
+    const [phoneTouched, setPhoneTouched] = useState(false);
     const isDisabled = !formData?.fullName || !formData?.email || formData?.phoneNumber.length !== 10 || !formData?.address || emailError !== "";
     return (
         <div className="w-full rounded-[30px] border bg-white p-5 md:p-12 shadow-sm flex flex-col gap-10">
@@ -79,8 +85,11 @@ export default function PersonalInformation({
                             type="email"
                             placeholder="Enter your email"
                             className={`h-14 md:h-16 rounded-2xl border px-4 md:px-5 text-base md:text-lg outline-none focus:ring-2
-                                ${emailError ? "border-red-500 focus:ring-red-500" : "border-[#E5E7EB] focus:ring-violet-500"}
-                            `}
+                               ${emailError
+                                    ? "border-red-500 focus:ring-red-500"
+                                    : "border-[#E5E7EB] focus:ring-violet-500"
+                                }
+                                  `}
                             value={formData?.email || ""}
                             onChange={(e) => {
                                 updateFormData("email", e.target.value);
@@ -108,6 +117,7 @@ export default function PersonalInformation({
                                 placeholder="9876543210"
                                 className="flex-1 px-4 outline-none"
                                 value={formData?.phoneNumber || ""}
+                                onBlur={() => setPhoneTouched(true)}
                                 onChange={(e) =>
                                     updateFormData(
                                         "phoneNumber",
@@ -116,12 +126,13 @@ export default function PersonalInformation({
                                 }
                             />
                         </div>
-                        
-                        {formData?.phoneNumber &&
-  formData.phoneNumber.length !== 10 && (
-    <p className="text-sm text-red-500">
-      Please enter a valid 10-digit phone number
-    </p>
+
+                      {phoneTouched &&
+    formData?.phoneNumber &&
+    formData?.phoneNumber.length !== 10 && (
+        <p className="text-sm text-red-500">
+            Please enter a valid 10-digit phone number
+        </p>
 )}
                     </div>
                     <div className="flex flex-col gap-3">
