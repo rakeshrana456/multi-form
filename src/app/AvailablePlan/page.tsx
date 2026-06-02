@@ -52,7 +52,7 @@ export default function AvailablePlans({
     if (setFormData) {
       setFormData({
         ...formData,
-        selectedPlan: planTitle,
+        selectedPlan: planTitle ,
       });
     }
   };
@@ -72,10 +72,10 @@ export default function AvailablePlans({
         {plans.map((plan) => (
           <div
             key={plan.id}
-            onClick={() => handlePlanSelect(plan.title)}
+            onClick={() => handlePlanSelect(plan.title )}
             className={cn(
               "relative rounded-2xl border p-5 transition-all cursor-pointer",
-              selectedPlan === plan.title
+              selectedPlan === plan.title 
                 ? "border-[#4A3AFF] shadow-sm"
                 : "border-gray-200"
             )}
@@ -83,7 +83,7 @@ export default function AvailablePlans({
             <div
               className={cn(
                 "absolute top-5 right-5 h-5 w-5 rounded-full border flex items-center justify-center",
-                selectedPlan === plan.title
+                selectedPlan === plan.title 
                   ? "border-[#4A3AFF]"
                   : "border-gray-300"
               )}

@@ -25,9 +25,9 @@ export default function Brix() {
     phoneNumber: '',
     company: '',
     address: '',
-    selectedPlan: '',
-    selectedService: '',
-    ActiveAccount: '',
+    selectedPlan: 'Basic Plan',
+    selectedService: 'Development',
+    ActiveAccount: 'Development',
   });
 
 
@@ -73,7 +73,7 @@ export default function Brix() {
                     {index !== SideData.length - 1 && (
                       <div className="mt-2 h-6 w-1 bg-gray-300 rounded overflow-hidden">
                         <div
-                          className={`w-full bg-[#4A3AFF] transition-all duration-900ease-linear ${step > data.id ? "h-full" : "h-0"
+                          className={`w-full bg-[#4A3AFF] transition-all duration-900 ease-linear ${step > data.id ? "h-full" : "h-0"
                             }`}
                         />
                       </div>
@@ -107,7 +107,7 @@ export default function Brix() {
             {step === 1 && <PersonalInformation onContinue={() => setStep(2)} formData={formData} setFormData={setFormData} />}
             {step === 2 && <AvailablePlans onContinue={() => setStep(3)} onBack={() => setStep(1)} formData={formData} setFormData={setFormData} />}
             {step === 3 && <OurService onContinue={() => setStep(4)} onBack={() => setStep(2)} formData={formData} setFormData={setFormData} />}
-            {step === 4 && <ActiveAccount onContinue={() => setStep(5)} onBack={() => setStep(3)} formData={formData} setFormData={setFormData} />}
+            {step === 4 && <ActiveAccount onContinue={() => setStep(1)} onBack={() => setStep(3)} formData={formData} setFormData={setFormData} />}
           </div>
 
         </div>

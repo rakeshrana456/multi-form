@@ -6,6 +6,8 @@ import { successData } from "@/Data/data.js";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { TypographyH3 , TypographyP} from "@/Typography/Typography";
+
+
 interface ActiveAccountProps {
     onContinue: () => void;
     onBack: () => void;
@@ -32,6 +34,7 @@ interface ActiveAccountProps {
         }>
     >;
 }
+
 export default function ActiveAccount({
     onBack,
     onContinue,
@@ -48,10 +51,22 @@ export default function ActiveAccount({
     };
     useEffect(()=>{
         setShowPopup(false);
+       
+      
 
     },[])
 
     const handleClosePopup = () => {
+         setFormData({
+        fullName: "",
+        email: "",
+        phoneNumber: "",
+        company: "",
+        address: "",
+        selectedPlan: "",
+        selectedService: "",
+        ActiveAccount: "",
+    });
         setShowPopup(false);
         onContinue();
     };
@@ -127,7 +142,7 @@ export default function ActiveAccount({
             </div>
 
             
-            {/* {showPopup && (
+            {showPopup && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
                     <div className="relative mx-4 w-full max-w-md animate-in fade-in zoom-in duration-300">
                         <div className="rounded-2xl border bg-white p-8 shadow-2xl">
@@ -165,13 +180,13 @@ export default function ActiveAccount({
                                 </p>
                                 
                                
-                                <div className="mb-6 rounded-lg bg-gray-50 p-4 text-left">
+                                {/* <div className="mb-6 rounded-lg bg-gray-50 p-4 text-left">
                                     <p className="text-sm font-semibold text-gray-700">Summary:</p>
                                     <p className="text-sm text-gray-600">Name: {formData.fullName}</p>
                                     <p className="text-sm text-gray-600">Email: {formData.email}</p>
                                     <p className="text-sm text-gray-600">Plan: {formData.selectedPlan}</p>
                                     <p className="text-sm text-gray-600">Service: {formData.selectedService}</p>
-                                </div>
+                                </div> */}
 
                                 <Button
                                     onClick={handleClosePopup}
@@ -183,7 +198,7 @@ export default function ActiveAccount({
                         </div>
                     </div>
                 </div>
-            )} */}
+            )}
         </>
     );
 }
