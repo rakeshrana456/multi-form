@@ -16,6 +16,7 @@ interface AvailablePlansProps {
     address: string;
     selectedPlan: string;
     selectedService: string;
+      ActiveAccount: string;
   };
   setFormData?: React.Dispatch<
     React.SetStateAction<{
@@ -26,6 +27,7 @@ interface AvailablePlansProps {
       address: string;
       selectedPlan: string;
       selectedService: string;
+      ActiveAccount: string;
     }>
   >;
 }
@@ -41,6 +43,7 @@ export default function AvailablePlans({
     address: '',
     selectedPlan: '',
     selectedService: '',
+    ActiveAccount: '',
   },
   setFormData = () => {},
 }: AvailablePlansProps) {

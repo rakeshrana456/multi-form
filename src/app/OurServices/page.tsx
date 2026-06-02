@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { services } from "@/Data/data.js";
 import { Button } from "@/components/ui/button";
@@ -17,6 +16,7 @@ interface OurServiceProps {
     address: string;
     selectedPlan: string;
     selectedService: string;
+    ActiveAccount: string;
   };
   setFormData?: React.Dispatch<
     React.SetStateAction<{
@@ -27,6 +27,7 @@ interface OurServiceProps {
       address: string;
       selectedPlan: string;
       selectedService: string;
+      ActiveAccount: string;
     }>
   >;
 }
@@ -39,6 +40,7 @@ const defaultFormData = {
   address: '',
   selectedPlan: '',
   selectedService: '',
+  ActiveAccount: '',
 };
 
 export default function OurService({
@@ -47,14 +49,10 @@ export default function OurService({
   formData = defaultFormData,
   setFormData,
 }: OurServiceProps) {
-
   const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  // Safe handler to update form data
   const handleServiceSelect = (serviceTitle: string) => {
     if (setFormData && formData) {
       setFormData({
@@ -63,14 +61,10 @@ export default function OurService({
       });
     }
   };
-
-  // Don't render during SSR to avoid hydration issues
   if (!mounted) {
     return null;
   }
-
   const selectedService = formData?.selectedService || '';
-
   return (
     <div className="rounded-[32px] border bg-white p-10 shadow-sm">
       <div className="mb-10">
@@ -80,13 +74,10 @@ export default function OurService({
         <TypographyP>
           Select the service that best fits your needs and budget.
         </TypographyP>
-      </div>
-
-      {/* Services Grid */}
+      </div>  
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map((service) => {
           const Icon = service.icon;
-
           return (
             <div
               key={service.id}

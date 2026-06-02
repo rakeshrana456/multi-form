@@ -5,7 +5,6 @@ import { servicesSelected } from "@/Data/data.js";
 import { successData } from "@/Data/data.js";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { X } from "lucide-react"; 
 import { TypographyH3 , TypographyP} from "@/Typography/Typography";
 interface ActiveAccountProps {
     onContinue: () => void;
@@ -18,6 +17,7 @@ interface ActiveAccountProps {
         address: string;
         selectedPlan: string;
         selectedService: string;
+        ActiveAccount: string;
     };
     setFormData: React.Dispatch<
         React.SetStateAction<{
@@ -28,6 +28,7 @@ interface ActiveAccountProps {
             address: string;
             selectedPlan: string;
             selectedService: string;
+            ActiveAccount: string;
         }>
     >;
 }
@@ -73,12 +74,13 @@ export default function ActiveAccount({
                                 onClick={() =>
                                     setFormData({
                                         ...formData,
-                                        selectedService: service.title,
+                                        // selectedService: service.title,
+                                        ActiveAccount: service.title
                                     })
                                 }
                                 className={cn(
                                     "rounded-2xl border p-8 cursor-pointer transition-all",
-                                  service.title === formData?.selectedService
+                                  service.title === formData?.ActiveAccount
                                         ? "border-[#4A3AFF]"
                                         : "border-gray-200"
                                 )}
@@ -107,7 +109,7 @@ export default function ActiveAccount({
                         Back
                     </Button>
                     <Button
-                        disabled={!formData?.selectedService}
+                        disabled={!formData?.ActiveAccount}
                         onClick={handleFinish}
                         className="
                             h-14 w-36 rounded-xl

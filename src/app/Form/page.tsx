@@ -14,6 +14,7 @@ interface PersonalInformationProps {
         address: string;
         selectedPlan: string;
         selectedService: string;
+        ActiveAccount: string;
     };
     setFormData?: React.Dispatch<
         React.SetStateAction<{
@@ -24,6 +25,7 @@ interface PersonalInformationProps {
             address: string;
             selectedPlan: string;
             selectedService: string;
+            ActiveAccount: string;
         }>
     >;
 }
@@ -36,6 +38,7 @@ const defaultFormData = {
     address: '',
     selectedPlan: '',
     selectedService: '',
+    ActiveAccount: '',
 };
 
 export default function PersonalInformation({
