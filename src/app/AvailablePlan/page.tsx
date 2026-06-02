@@ -47,9 +47,7 @@ export default function AvailablePlans({
   },
   setFormData = () => {},
 }: AvailablePlansProps) {
-
   const selectedPlan = formData?.selectedPlan || '';
-
   const handlePlanSelect = (planTitle: string) => {
     if (setFormData) {
       setFormData({
@@ -135,9 +133,9 @@ export default function AvailablePlans({
           type="button"
           onClick={onContinue}
           disabled={!selectedPlan}
-          className="
+          className=" cursor-pointer
             h-14 min-w-35 rounded-xl
-            cursor-pointer
+          
             bg-[#4A3AFF]
             hover:bg-[#3d2de0]
             disabled:bg-gray-400

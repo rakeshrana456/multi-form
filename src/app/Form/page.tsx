@@ -1,7 +1,7 @@
 "use client";
 import { TypographyH3 } from '@/Typography/Typography';
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from 'react';
+
 interface PersonalInformationProps {
     onContinue: () => void;
     formData?: {
@@ -55,7 +55,7 @@ export default function PersonalInformation({
                             type="text"
                             placeholder="Exp. John Carter"
                             className="h-14 md:h-16 rounded-2xl border border-[#E5E7EB] px-4 md:px-5 text-base md:text-lg outline-none focus:ring-2 focus:ring-violet-500"
-                            value={formData?.fullName || 'Rakesh Rana'}
+                            value={formData?.fullName || ''}
                             onChange={(e) => updateFormData('fullName', e.target.value)}
                         />
                     </div>
@@ -67,7 +67,7 @@ export default function PersonalInformation({
                             type="email"
                             placeholder="Enter your email"
                             className="h-14 md:h-16 rounded-2xl border border-[#E5E7EB] px-4 md:px-5 text-base md:text-lg outline-none focus:ring-2 focus:ring-violet-500"
-                            value={formData?.email || 'rakesh.rana@example.com'}
+                            value={formData?.email || ''}
                             onChange={(e) => updateFormData('email', e.target.value)}
                         />
                     </div>
@@ -93,7 +93,7 @@ export default function PersonalInformation({
                             type="text"
                             placeholder="Exp. Company"
                             className="h-14 md:h-16 rounded-2xl border border-[#E5E7EB] px-4 md:px-5 text-base md:text-lg outline-none focus:ring-2 focus:ring-violet-500"
-                            value={formData?.company || 'Exp. Company'}
+                            value={formData?.company || ''}
                             onChange={(e) => updateFormData('company', e.target.value)}
                         />
                     </div>
@@ -107,7 +107,7 @@ export default function PersonalInformation({
                         type="text"
                         placeholder="Exp. San Francisco, CA"
                         className="h-14 md:h-16 rounded-2xl border border-[#E5E7EB] px-4 md:px-5 text-base md:text-lg outline-none focus:ring-2 focus:ring-violet-500"
-                        value={formData?.address || 'Exp. San Francisco, CA'}
+                        value={formData?.address || ''}
                         onChange={(e) => updateFormData('address', e.target.value)}
                     />
                 </div>
@@ -117,7 +117,7 @@ export default function PersonalInformation({
                         onClick={onContinue}
                         type="button"
                         // disabled={isDisabled}
-                        className="
+                        className=" cursor-pointer
                             h-14 w-36 rounded-xl
                             bg-[#4A3AFF] hover:bg-[#3D2FFF]
                             disabled:bg-gray-500

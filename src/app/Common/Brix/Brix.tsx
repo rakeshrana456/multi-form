@@ -19,8 +19,6 @@ interface sideData {
 }
 export default function Brix() {
   const [step, setStep] = useState(1);
-  const handleBack = () => setStep((prev) => Math.max(prev - 1, 1));
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',

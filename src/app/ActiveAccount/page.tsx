@@ -1,10 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
-
+// import {X}from "lucid/react"
 import { servicesSelected } from "@/Data/data.js";
 import { successData } from "@/Data/data.js";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TypographyH3 , TypographyP} from "@/Typography/Typography";
 interface ActiveAccountProps {
     onContinue: () => void;
@@ -32,7 +32,6 @@ interface ActiveAccountProps {
         }>
     >;
 }
-
 export default function ActiveAccount({
     onBack,
     onContinue,
@@ -47,6 +46,10 @@ export default function ActiveAccount({
         console.log("Data saved to localStorage:", formData);  
         setShowPopup(true);
     };
+    useEffect(()=>{
+        setShowPopup(false);
+
+    },[])
 
     const handleClosePopup = () => {
         setShowPopup(false);
@@ -73,8 +76,7 @@ export default function ActiveAccount({
                                 key={service.id}
                                 onClick={() =>
                                     setFormData({
-                                        ...formData,
-                                        // selectedService: service.title,
+                                        ...formData,                                    
                                         ActiveAccount: service.title
                                     })
                                 }
@@ -134,7 +136,7 @@ export default function ActiveAccount({
                                 onClick={handleClosePopup}
                                 className="absolute right-4 top-4 rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
                             >
-                                <X size={20} />
+                                
                             </button>
 
                             <div className="text-center">
