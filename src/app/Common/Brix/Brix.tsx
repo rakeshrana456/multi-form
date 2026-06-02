@@ -64,7 +64,7 @@ export default function Brix() {
             </div>
             {
               SideData.map((data: sideData, index) => (
-                <div key={index} className="flex gap-5 p-7 min-h-[120px]">
+                <div key={index} className="flex gap-5 p-7 min-h-30">
                   <div className="flex flex-col items-center">
                     <Button
                       variant={step === data.id ? "default" : "outline"}
@@ -73,9 +73,9 @@ export default function Brix() {
                       {data.id}
                     </Button>
                     {index !== SideData.length - 1 && (
-                      <div className="mt-2 h-6 w-[4px] bg-gray-300 rounded overflow-hidden">
+                      <div className="mt-2 h-6 w-1 bg-gray-300 rounded overflow-hidden">
                         <div
-                          className={`w-full bg-[#4A3AFF] transition-all duration-[900ms] ease-linear ${step > data.id ? "h-full" : "h-0"
+                          className={`w-full bg-[#4A3AFF] transition-all duration-900ease-linear ${step > data.id ? "h-full" : "h-0"
                             }`}
                         />
                       </div>
