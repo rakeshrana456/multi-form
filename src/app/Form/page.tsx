@@ -79,10 +79,8 @@ export default function PersonalInformation({
                             type="email"
                             placeholder="Enter your email"
                             className={`h-14 md:h-16 rounded-2xl border px-4 md:px-5 text-base md:text-lg outline-none focus:ring-2
-                          ${emailError
-                                    ? "border-red-500 focus:ring-red-500"
-                                    : "border-[#E5E7EB] focus:ring-violet-500"
-                                }`}
+                                ${emailError ? "border-red-500 focus:ring-red-500" : "border-[#E5E7EB] focus:ring-violet-500"}
+                            `}
                             value={formData?.email || ""}
                             onChange={(e) => {
                                 updateFormData("email", e.target.value);
@@ -119,11 +117,12 @@ export default function PersonalInformation({
                             />
                         </div>
                         
-                        {formData?.phoneNumber.length !== 10 && (
-                            <p className="text-sm text-red-500">
-                                Please enter a valid 10-digit phone number
-                            </p>
-                        )}
+                        {formData?.phoneNumber &&
+  formData.phoneNumber.length !== 10 && (
+    <p className="text-sm text-red-500">
+      Please enter a valid 10-digit phone number
+    </p>
+)}
                     </div>
                     <div className="flex flex-col gap-3">
                         <label className="text-base md:text-[20px] font-medium text-[#1E1B4B]">
