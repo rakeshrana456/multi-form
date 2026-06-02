@@ -106,7 +106,6 @@ export default function Brix() {
 
           </div>
           <div className="rightContainer flex justify-center items-center ">
-
             {step === 1 && <PersonalInformation onContinue={() => setStep(2)} formData={formData} setFormData={setFormData} />}
             {step === 2 && <AvailablePlans onContinue={() => setStep(3)} onBack={() => setStep(1)} formData={formData} setFormData={setFormData} />}
             {step === 3 && <OurService onContinue={() => setStep(4)} onBack={() => setStep(2)} formData={formData} setFormData={setFormData} />}

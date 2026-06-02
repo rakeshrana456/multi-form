@@ -68,7 +68,7 @@ export default function PersonalInformation({
     const isDisabled = !formData?.fullName || !formData?.email || !formData?.phoneNumber || !formData?.address;
 
     return (
-        <div className="w-full rounded-[30px] border bg-white p-5 md:p-12 shadow-sm">
+        <div className="w-full rounded-[30px] border bg-white p-5 md:p-12 shadow-sm flex flex-col gap-10">
             <TypographyH3>
                 Personal information
             </TypographyH3>
